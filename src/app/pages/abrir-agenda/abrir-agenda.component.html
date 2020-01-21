@@ -1,0 +1,199 @@
+<app-menu>
+  <div class="row justify-content-center">
+    <div class="col-10 justify-content-start">
+      <mat-toolbar class="mt-3">
+        <span>Abrir Agenda</span>
+      </mat-toolbar>
+    
+      <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="passo1">
+          <form [formGroup]="passo1">
+            <ng-template matStepLabel>Tipo de Serviço</ng-template>
+            <mat-form-field class="col-8"> 
+              <mat-select placeholder="Serviço" [(ngModel)]="passo1.value.servico" formControlName="servico" (ngModelChange)="selecionaServico()">
+                <mat-option *ngFor="let servico of servicos" [value]="servico._id">{{servico.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <a class="col-2 ml-5" mat-raised-button color="primary" [routerLink]="['/servico']">Novo Serviço</a>
+
+            <mat-form-field class="col-3">
+              <input matInput placeholder="Tempo de Atendimento" type="number" [(ngModel)]="passo1.value.tempoServico" formControlName="tempoServico">
+              <span matSuffix>&nbsp;minutos</span>
+            </mat-form-field>
+
+        
+            <div class="row justify-content-end mt-5">
+              <button mat-button matStepperNext color="primary">Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="passo2">
+          <form [formGroup]="passo2" class="container mt-3">
+            <ng-template matStepLabel>Dias e Horários</ng-template>
+
+              <div class="input-group col-6">
+                <input class="form-control" mwlFlatpickr mode="range"  [(ngModel)]="passo2.value.horarioSelecionado" 
+                [altInput]="true" placeholder="Período de Atendimento"
+                [convertModelValue]="true" formControlName="horarioSelecionado">
+              </div>
+        
+                <!-- <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.segunda"
+                labelPosition="before"
+                formControlName="segunda">
+                  Seg
+              </mat-checkbox>
+            
+                <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.terca"
+                labelPosition="before"
+                formControlName="terca">
+                  Ter
+              </mat-checkbox>
+            
+                <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.quarta"
+                labelPosition="before"
+                formControlName="quarta">
+                  Qua
+              </mat-checkbox>
+            
+                <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.quinta"
+                labelPosition="before"
+                formControlName="quinta">
+                  Qui
+              </mat-checkbox>
+            
+                <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.sexta"
+                labelPosition="before"
+                formControlName="sexta">
+                  Sex
+              </mat-checkbox>
+                <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.sabado"
+                labelPosition="before"
+                formControlName="sabado">
+                  Sab
+              </mat-checkbox>
+                <mat-checkbox
+                class="col-2"
+                [(ngModel)]="passo2.value.domingo"
+                labelPosition="before"
+                formControlName="domingo">
+                  Dom
+              </mat-checkbox> -->
+            
+              <div class="input-group col-5 mb-2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">Inicio</span>
+                  </div>
+                  <input class="form-control" [(ngModel)]="passo2.value.horaInicio" formControlName="horaInicio" placeholder="Hora de Inicio dos Atendimentos" aria-label="Hora de Inicio dos Atendimentos" [ngxTimepicker]="inicio" [format]="24"  readonly>
+                  <ngx-material-timepicker #inicio></ngx-material-timepicker>
+              </div>
+              <div class="input-group col-5">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">Fim</span>
+                  </div>
+                  <input class="form-control" [(ngModel)]="passo2.value.horaFim" formControlName="horaFim" placeholder="Hora de Termino dos Atendimentos" aria-label="Hora de Termino dos Atendimentos" [ngxTimepicker]="fim" [format]="24"  readonly>
+                  <ngx-material-timepicker #fim></ngx-material-timepicker>
+              </div>
+
+
+            <!-- <button class="col-2" mat-raised-button color="primary">Adicionar</button> -->
+
+          
+            <div class="row justify-content-end mt-5">
+              <button mat-button matStepperPrevious color="primary">Anterior</button>
+              <button mat-button matStepperNext color="primary">Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="passo3" >
+          <form [formGroup]="passo3">
+            <ng-template matStepLabel>Localização</ng-template>
+            
+            
+            <mat-form-field class="col-8 mr-5">
+              <input type="search" matInput placeholder="Endereço" formControlName="localizacao" [(ngModel)]="localizacao">
+            </mat-form-field>
+            <button class="col-2" mat-raised-button color="primary" (click)="pesquisarEndereco()">Pequisar</button>
+
+
+              <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+                <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
+          
+            <div class="row justify-content-end mt-5">
+              <button mat-button matStepperPrevious color="primary">Anterior</button>
+              <button mat-button matStepperNext color="primary">Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="passo4">
+          <form [formGroup]="passo4">
+            <ng-template matStepLabel>Valor e Formas de Pagamento</ng-template>
+            
+            <mat-form-field class="row col-2 ml-5 mt-3">
+              <input matInput placeholder="Valor" type="number" [(ngModel)]="valorConsulta" formControlName="valorConsulta">
+              <span matPrefix>R$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>
+
+
+              <mat-checkbox
+              class="row col-3 ml-5 mt-2"
+              [(ngModel)]="dinheiro"
+              labelPosition="before"
+              formControlName="dinheiro">
+                Dinheiro
+              </mat-checkbox>
+
+              <mat-checkbox
+              class="row col-3 ml-5"
+              [(ngModel)]="pagseguro"
+              labelPosition="before"
+              formControlName="pagseguro">
+                PagSeguro
+              </mat-checkbox>
+
+              
+          
+            <div class="row justify-content-end mt-5">
+              <button mat-button matStepperPrevious color="primary">Anterior</button>
+              <button mat-button matStepperNext color="primary">Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+
+        <mat-step>
+          <ng-template matStepLabel>Pronto</ng-template>
+          <div class="row justify-content-center">
+            <button class="col-3 mt-5" mat-raised-button color="primary" (click)="abrirAgenda()">Abrir Agenda</button>
+          </div>
+          <div class="row justify-content-end mt-5">
+            <button mat-button matStepperPrevious color="primary">Back</button>
+            <button mat-button (click)="stepper.reset()" color="primary">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+  
+      
+  
+  
+  
+    </div>
+  </div>
+  
+  
+  </app-menu>

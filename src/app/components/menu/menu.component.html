@@ -1,0 +1,30 @@
+<app-header title="Tatiane Nutricionista">
+  <button mat-icon-button (click)="drawer.toggle()" *ngIf="user.isAutenticate()"><i class="material-icons md-dark">person</i></button>
+</app-header>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer>
+      <mat-tab-group>
+          <mat-tab *ngIf="user.isPaciente()" label="Paciente: {{user.name}}">
+              <mat-nav-list>
+                  <a mat-list-item [routerLink]="['/dados-paciente']"> Meus Dados </a>
+                  <a mat-list-item [routerLink]="['/agendamento']" *ngIf="user.isPaciente()"> Agendamento </a>
+
+              </mat-nav-list>
+          </mat-tab>
+          <mat-tab *ngIf="user.isNutri()" label="Nutricionista: {{user.name}}">
+                <mat-nav-list>
+                    <a mat-list-item [routerLink]="['/agenda']" *ngIf="user.isNutri()" > Consultar Agenda </a>
+                    <a mat-list-item [routerLink]="['/abrir-agenda']" *ngIf="user.isNutri()"> Abrir Agenda </a>
+                    <a mat-list-item [routerLink]="['/dados-paciente']"> {{user.isNutri()? 'Pacientes' : 'Meus Dados'}} </a>
+                    <a mat-list-item [routerLink]="['/servicos']" *ngIf="user.isNutri()"> Serviços </a>
+                </mat-nav-list>
+          </mat-tab>
+      </mat-tab-group>
+      <!-- <button mat-raised-button class="btn btn-primary">Cliente</button>
+        <button mat-raised-button class="btn btn-primary">Cooperado</button> -->
+  </mat-drawer>
+  <mat-drawer-content class="content">
+
+     <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

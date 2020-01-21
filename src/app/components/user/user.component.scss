@@ -1,0 +1,88 @@
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active,
+mat-menu:focus,
+mat-menu:active {
+  outline: 0px !important;
+  -webkit-appearance: none;
+}
+
+form {
+  width: 100%;
+}
+
+
+input.texto-invalido {
+  border-color: #d11111;
+  color: #d11111;
+}
+
+.caixa-form-input {
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  > input:first-child {
+    width: 100%;
+    padding: 11px 21px 13px;
+    border: none;
+    border-radius: 25px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+#sendBtn, #loading-spinner {
+  position: relative;
+  right: 45px;
+  transform: scale(1.2);
+  margin: 0;
+  display: inline-block;
+  z-index: 10;
+}
+
+#loading-spinner {
+  top: 10px;
+}
+
+.conversation {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 16px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card-25 {
+
+  width: 25%;
+  display: block;
+  margin: 10px;
+}
+.card-50 {
+
+  width: 50%;
+  display: block;
+  margin: 10px;
+}
+app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+mat-drawer {
+  top: 60px;
+  position: fixed;
+}
+
+.card-img{
+  height: 230px;
+}

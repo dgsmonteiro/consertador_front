@@ -1,0 +1,84 @@
+<app-menu>
+        <div class="main">
+            <mat-form-field *ngIf="user.isNutri()" class="col-12 mt-5 mb-3">
+                <input matInput placeholder="Servico" [(ngModel)]="busca" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let servicoOption of servicos" [value]="servicoOption.name" (click)="selecionaServico(servicoOption)">
+                    {{servicoOption.name}}
+                  </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+       
+          
+          <mat-tab-group class="width100" *ngIf="true">
+              <mat-tab label="Dados do Serviço">
+                  <form class="container mt-4">
+                      <mat-form-field *ngIf="true" class="col-12">
+                        <input matInput placeholder="Nome" [(ngModel)]="name" name="name">
+                      </mat-form-field>
+                    
+                      <mat-form-field *ngIf="true" class="col-12">
+                        <input matInput placeholder="Descricao" [(ngModel)]="descricao" name="descricao">
+                      </mat-form-field>
+                    
+                      <mat-form-field *ngIf="true" class="col-12">
+                        <input matInput placeholder="Instrução de Preparo" [(ngModel)]="instrucao" name="instrucao">
+                      </mat-form-field>
+                  
+                      <mat-form-field *ngIf="true" class="col-6">
+                        <input matInput placeholder="Tempo médio de atendimento" [(ngModel)]="tempoAtendimento" name="tempoAtendimento"> 
+                      </mat-form-field>
+                    
+                    
+                    </form>
+              </mat-tab>
+              <mat-tab label="Endereço">
+                  <form class="container mt-4">
+                      <mat-form-field *ngIf="true" class="col-10">
+                        <input matInput placeholder="Endereço" [(ngModel)]="endereco" name="endereco">
+                      </mat-form-field>
+                      <button class="col-2" mat-raised-button color="primary" (click)="pesquisarEndereco()">Pequisar</button>
+                    
+                    </form>
+                    <agm-map [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+                        <agm-marker  [latitude]="lat" [longitude]="lng"></agm-marker>
+                      </agm-map>
+              </mat-tab>
+              <mat-tab label="Formas de Pagamento">
+                  <form class="container mt-4">
+
+
+                        <mat-form-field class="row col-2 ml-5 mt-3 mb-4">
+                                <input matInput placeholder="Valor" type="number" [(ngModel)]="valor" name="valor">
+                                <span matPrefix>R$&nbsp;</span>
+                                <span matSuffix>.00</span>
+                        </mat-form-field>
+
+                        <mat-checkbox
+                        class="row col-3 ml-5 mt-2"
+                        [(ngModel)]="dinheiro"
+                        [labelPosition]="before"
+                        name="dinheiro">
+                          Dinheiro
+                        </mat-checkbox>
+          
+                        <mat-checkbox
+                        class="row col-3 ml-5"
+                        [(ngModel)]="pagSeguro"
+                        [labelPosition]="before"
+                        name="pagSeguro">
+                          PagSeguro
+                        </mat-checkbox>
+                    </form>
+              </mat-tab>
+              
+          </mat-tab-group>
+      
+          <div class="d-flex justify-content-center">
+              <button class="col-2 mr-5" mat-raised-button color="accent" (click)="adicionar()" *ngIf="true">Adicionar</button>
+              <button class="col-2 mr-5" mat-raised-button color="primary" (click)="atualizar()" *ngIf="servico">Atualizar</button>
+              <button class="col-2" mat-raised-button color="warn" (click)="remover(servico._id)" *ngIf="servico">Apagar</button>
+          </div>
+      
+        </div>
+      </app-menu>

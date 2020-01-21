@@ -1,0 +1,56 @@
+:host {
+    z-index: 10;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    mat-toolbar > span.titulo {
+      font-size: 0.8em;
+    }
+  }
+  
+  textarea:hover,
+  input:hover,
+  textarea:active,
+  input:active,
+  textarea:focus,
+  input:focus,
+  button:focus,
+  button:active,
+  button:hover,
+  label:focus,
+  .btn:active,
+  .btn.active,
+  mat-menu:focus,
+  mat-menu:active
+  {
+      outline:0px !important;
+      -webkit-appearance:none;
+  }
+  
+  mat-toolbar {
+    color: green;
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; 
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      height: 40px;
+    }
+    .titulo {
+      font-size: 1.2em;
+    }
+    .titulo:focus {
+      outline: none;
+    }
+  }
+  .mat-menu-item {
+    color: green;
+    justify-content: start;
+    align-items: center
+  }
+  .mat-icon{
+    color: green;
+  }

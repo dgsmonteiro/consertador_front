@@ -1,0 +1,22 @@
+<mat-toolbar class="mat-elevation-z4">
+    
+      <ng-content></ng-content>
+        <!-- <mat-menu #appMenu="matMenu">
+          <button mat-menu-item class="mat-menu-item"><mat-icon aria-label="salvar icon">attach_file</mat-icon> Anexar</button>
+          <button mat-menu-item class="mat-menu-item"><mat-icon aria-label="sair icon">save</mat-icon> Salvar</button>
+          <button mat-menu-item class="mat-menu-item"><mat-icon aria-label="salvar icon">minimize</mat-icon> Minimizar</button>
+          <button mat-menu-item class="mat-menu-item"><mat-icon aria-label="sair icon">close</mat-icon> Fechar</button>
+        </mat-menu>
+        <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon> -->
+      
+  <span class="titulo" [routerLink]="['/']"><img class="logo" src="../../../assets/images/dev-110x73.png" alt=""><img class="logo" src="../../../assets/images/letreiro.png" alt=""></span>
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item class="mat-menu-item" [routerLink]="['/login']" *ngIf="!user.isAutenticate()"><mat-icon aria-label="salvar icon" color="green">lock_open</mat-icon> Login</button>
+      <button mat-menu-item class="mat-menu-item" [routerLink]="['/register']" *ngIf="!user.isAutenticate()"><mat-icon aria-label="salvar icon" color="green">how_to_reg</mat-icon> Registrar</button>
+      <button mat-menu-item class="mat-menu-item" *ngIf="user.isAutenticate()" (click)="user.logoff()"><mat-icon aria-label="salvar icon" color="green">lock_open</mat-icon> Logoff</button>
+      <button mat-menu-item class="mat-menu-item" [routerLink]="['/about']"><mat-icon aria-label="sair icon" color="green">help</mat-icon> Ajuda</button>
+    </mat-menu>
+    <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+  </button>
+</mat-toolbar>

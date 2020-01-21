@@ -1,0 +1,156 @@
+<app-menu>
+    <div *ngIf="user.isNutri()" class="main">
+        <div class="row text-center mt-5">
+            <div class="col-md-4">
+              <mat-button-toggle-group name="calendarComands" aria-label="Calendar Comands">
+
+                <mat-button-toggle mwlCalendarPreviousView color="primary" [view]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="activeDayIsOpen = false" value="anterior">Anterior</mat-button-toggle>
+            
+                <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate" value="hoje">Hoje</mat-button-toggle>
+
+                <mat-button-toggle mwlCalendarNextView color="primary" [view]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="activeDayIsOpen = false" value="proximo">Próximo</mat-button-toggle>
+
+              </mat-button-toggle-group>
+            
+            </div>
+            <div class="col-md-4">
+              <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'pt' }}</h3>
+            </div>
+            <div class="col-md-4">
+              <mat-button-toggle-group name="CalendarView" aria-label="Calendar View">
+            
+                <mat-button-toggle (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month" value="mes">Mês
+                </mat-button-toggle>
+            
+                <mat-button-toggle (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week" value="semana">
+                  Semana</mat-button-toggle>
+            
+                <mat-button-toggle (click)="view = CalendarView.Day" [class.active]="view === CalendarView.Day" value="dia">Dia
+                </mat-button-toggle>
+            
+              </mat-button-toggle-group>
+            </div>
+          </div>
+          <br>
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view
+              *ngSwitchCase="CalendarView.Month"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              [activeDayIsOpen]="activeDayIsOpen"
+              (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-month-view>
+            <mwl-calendar-week-view
+              *ngSwitchCase="CalendarView.Week"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)"
+              [dayStartHour]="7"
+              [dayEndHour]="21">
+            </mwl-calendar-week-view>
+            <mwl-calendar-day-view
+              *ngSwitchCase="CalendarView.Day"
+              [viewDate]="viewDate"
+              [events]="events"
+              [refresh]="refresh"
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)"
+              [dayStartHour]="7"
+              [dayEndHour]="21">
+            </mwl-calendar-day-view>
+          </div>
+          
+          <br><br><br>
+          
+          <h3 *ngIf="false">
+            Editar Eventos
+            <button
+              class="btn btn-primary pull-right"
+              (click)="addEvent()">
+              Adicionar Novo
+            </button>
+            <div class="clearfix"></div>
+          </h3>
+          
+          <table class="table table-bordered" *ngIf="false">
+          
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Primary color</th>
+                <th>Secondary color</th>
+                <th>Starts at</th>
+                <th>Ends at</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+          
+            <tbody>
+              <tr *ngFor="let event of events; let index = index">
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="event.title"
+                    (keyup)="refresh.next()">
+                </td>
+                <td>
+                  <input
+                    type="color"
+                    [(ngModel)]="event.color.primary"
+                    (change)="refresh.next()">
+                </td>
+                <td>
+                  <input
+                    type="color"
+                    [(ngModel)]="event.color.secondary"
+                    (change)="refresh.next()">
+                </td>
+                <td>
+                  <input
+                    class="form-control"
+                    type="text"
+                    mwlFlatpickr
+                    [(ngModel)]="event.start"
+                    (ngModelChange)="refresh.next()"
+                    [altInput]="true"
+                    [convertModelValue]="true"
+                    [enableTime]="true"
+                    dateFormat="Y-m-dTH:i"
+                    altFormat="F j, Y H:i"
+                    placeholder="Not set">
+                </td>
+                <td>
+                  <input
+                    class="form-control"
+                    type="text"
+                    mwlFlatpickr
+                    [(ngModel)]="event.end"
+                    (ngModelChange)="refresh.next()"
+                    [altInput]="true"
+                    [convertModelValue]="true"
+                    [enableTime]="true"
+                    dateFormat="Y-m-dTH:i"
+                    altFormat="F j, Y H:i"
+                    placeholder="Not set">
+                </td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    (click)="events.splice(index, 1); refresh.next()">
+                    Apagar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          
+          </table>
+    </div>
+</app-menu>

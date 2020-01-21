@@ -1,0 +1,241 @@
+<app-header title="TATIANE">
+  <button mat-icon-button (click)="drawer.toggle()" *ngIf="user.isAutenticate()"><i class="material-icons md-dark">person</i></button>
+</app-header>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer mode="push">
+      <mat-tab-group>
+          <mat-tab label="Paciente">
+              <mat-nav-list>
+                  <a mat-list-item *ngFor="let link of userLinks"> {{ link }} </a>
+              </mat-nav-list>
+          </mat-tab>
+          <mat-tab label="Nutricionista">
+              <h1>Some more tab content</h1>
+              <p>...</p>
+          </mat-tab>
+      </mat-tab-group>
+
+  </mat-drawer>
+  <mat-drawer-content>
+
+      <div class="main">
+          <div *ngIf="user.isAutenticate()">
+                  <div class="jumbotron container banner mt-5">
+
+          
+                      </div>
+
+                      <div class="container mb-5">
+                              <div class="row justify-content-center">
+                                  <div class="col-sm-12 ol-md-6">
+                                      <h3 class="display-5">
+                                          Sobre nós</h3>
+                                      <p class="text-left display-7">
+                                          Dentro do processo de desenvolvimento web nós temos espaço para todo mundo:
+                                          <br>- Se você precisa de um produto digital, está no lugar certo, temos uma equipe com profissionais qualificados de todas as áreas, para garantir que seu sonho se transforme em realidade com qualidade;
+                                          <br>- Se você é programador, esse ambiente foi feito para você, vai receber todo o apoio que necessita;
+                                          <br>- Se você tem conhecimento e habilidades em SCRUM, pode nos ajudar a manter nossos processos organizados;
+                                          <br>- Estudantes, Designers Gráficos, Animadores, Fotógrafos, Marketeiros, Vendedores, Analistas de Infraestrutura, Arquitetos, Intusiastas e Curiosos, nós precisamos de vocês também.<br></p>
+                                  
+                                              
+                                  </div>
+                                  <img src="../../../assets/images/background4.jpg" alt="scrum">
+                              </div>
+                              <mat-divider class="mb-4 mt-4"></mat-divider>
+                              <ul>
+                                  <li><strong>COMUNIDADE&nbsp;</strong>- Desenvolvimento é em comunidade, usamos o princípio do
+                                      cooperativismo para crescermos como uma comunidade comprometida e dedicada.</li>
+                                  <li><strong>AGILIDADE</strong> - Atualmente os métodos ágeis simplificam muito a vida de quem
+                                      contrata serviços de desenvolvimento.&nbsp;</li>
+                                  <li><strong>ECONOMIA </strong>- Acreditamos que em comunidade podemos transformar o
+                                      desenvolvimento de software algo acessível.&nbsp;</li>
+                                  <li><strong>FLEXIBILIDADE</strong> - Com a metodologia SCRUM, você acompanha cada passo do
+                                      desenvolvimento, podendo solicitar alterações sempre que precisar.</li>
+                              </ul>
+                          </div>
+                      <div class="container d-flex justify-content-between mb-3">
+          
+                          <mat-card class="card-50">
+          
+                              <img mat-card-image src="../../../assets/images/1080x696.jpg" alt="Quero Contratar Serviços">
+                              <mat-card-title>Quero Desenvolver um Produto</mat-card-title>
+                              <mat-card-content>
+                                  <p>Temos a tecnologia e a equipe que você precisa para colocar sua empresa na internet ou por
+                                      em prática aquele projeto que tanto sonhou. Consulte-nos!</p>
+                              </mat-card-content>
+                          </mat-card>
+          
+                          <mat-card class="card-50">
+          
+                              <img mat-card-image src="../../../assets/images/1-510x340.jpg" alt="Sou Desenvolver">
+                              <mat-card-title>Sou Desenvolvedor</mat-card-title>
+                              <mat-card-content>
+                                  <p>Nós queremos resolver o problema da distância entre quem está disposto a desenvolver com
+                                      quem precisa de desenvolvimento, utilizamos as melhores ferramentas de mercado. Faça parte!</p>
+                              </mat-card-content>
+                          </mat-card>
+          
+                      </div>
+          
+              <div class="container d-flex justify-content-between mt-5">
+              <mat-card class="card-25">
+                  <img mat-card-image src="../../../assets/images/angular-510x510.png" alt="angular">
+                  <mat-card-title class="display-4">Angular</mat-card-title>
+                  <mat-card-content>
+                      <p class="display-7">
+                          Angular (comumente referido como "Angular 2+" ou "Angular 2") é uma plataforma de
+                          aplicações web de código-fonte aberto e front-end baseado em TypeScript liderado pela
+                          Equipe Angular do Google e por uma comunidade de indivíduos e corporações. Angular é uma
+                          reescrita completa do AngularJS, feito pela mesma equipe que o construiu.
+                      </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <a class="btn btn-sm btn-secondary display-4" href="https://angular.io" target="_blank">
+                          Saiba Mais</a>
+                  </mat-card-actions>
+              </mat-card>
+              <mat-card class="card-25">
+                  <div class="card-img d-flex align-items-center">
+                      <img mat-card-image src="../../../assets/images/node-510x312.png" alt="angular">
+                  </div>
+                  <mat-card-title class="display-4">NodeJs</mat-card-title>
+                  <mat-card-content>
+                      <p class="display-7">
+                          Node.js é um interpretador de código JavaScript com o código aberto, focado em migrar o
+                          Javascript do lado do cliente para servidores. Seu objetivo é ajudar programadores na
+                          criação de aplicações de alta escalabilidade (como um servidor web), com códigos capazes de
+                          manipular dezenas de milhares de conexões simultâneas, numa única máquina física.&nbsp;O
+                          Node.js é baseado no interpretador V8 JavaScript Engine (interpretador de JavaScript open
+                          source implementado pelo Google em C++ e utilizado pelo Chrome). Foi criado por Ryan Dahl
+                          em 2009, e seu desenvolvimento é mantido pela fundação Node.js em parceria com a Linux
+                          Foundation.
+                      </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <a class="btn btn-sm btn-secondary display-4" href="https://nodejs.org/en/" target="_blank">
+                          Saiba Mais</a>
+                  </mat-card-actions>
+              </mat-card>
+              <mat-card class="card-25">
+                  <img mat-card-image src="../../../assets/images/bootstrap-510x428.png" alt="angular">
+                  <mat-card-title class="display-4">Bootstrap</mat-card-title>
+                  <mat-card-content>
+                      <p class="display-7">
+                          Bootstrap é um framework web com código-fonte aberto para desenvolvimento de componentes de
+                          interface e front-end para sites e aplicações web usando HTML, CSS e JavaScript, baseado em
+                          modelos de design para a tipografia, melhorando a experiência do usuário em um site
+                          amigável e responsivo.
+                          <br>
+                          <br>O Bootstrap é um dos projetos mais bem avaliado no site GitHub, com mais de 111 600
+                          estrelas e 51 500 forks. </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <a class="btn btn-sm btn-secondary display-4" href="https://getbootstrap.com/" target="_blank">
+                          Saiba Mais</a>
+                  </mat-card-actions>
+              </mat-card>
+              <mat-card class="card-25">
+                  <img mat-card-image src="../../../assets/images/magento-328x287.png" alt="angular">
+                  <mat-card-title class="display-4">Magento</mat-card-title>
+                  <mat-card-content>
+                      <p class="display-7">
+                          Magento é um sistema web de e-commerce de código aberto baseado em PHP e MySQL utilizando
+                          elementos do Framework Zend, totalmente modular, desenvolvido pela Magento Inc (antiga
+                          Varien).<br><br>Com mais de 240.000 lojas implantadas no mundo e presente em mais de 50
+                          países, o Magento é considerada a plataforma de e-commerce mais popular do mundo. Em
+                          pesquisa realizada pela Aheadworks em Setembro de 2012, foi constatado que o Magento é
+                          utilizado por 31,4% das empresas. Além disso, o termo "Magento" já é mais procurado na
+                          internet do que o próprio termo "e-commerce"
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <a class="btn btn-sm btn-secondary display-4" href="https://magento.com/" target="_blank">
+                          Saiba Mais</a>
+                  </mat-card-actions>
+              </mat-card>
+
+
+          </div>
+          </div>
+          <div *ngIf="!user.isAutenticate()">
+    
+              <div class="container">
+                  <h2 class="title align-center fonts-style bold white display-1">Somos Inovação</h2>
+                  
+                  
+              </div>
+          
+          <section class="content2 section article" id="content2-e">
+              
+               
+          
+              <div class="container">
+                  <div class="row justify-content-center">
+                      <div class="col-sm-12 col-md-10 col-lg-8">
+                          <h3 class="fonts-style section-title light display-2">
+                              Seguimos os 7 conceitos do Cooperativismo</h3>
+                          <p class="text fonts-style display-7">Baseados no estatuto da cooperativa de consumo de Rochdale (1844), são 7 os conceitos que definem uma sociedade Cooperativa:
+          <br><br>1- ADESÃO LIVRE E VOLUNTÁRIA
+          <br>2 - GESTÃO DEMOCRÁTICA
+          <br>3 - PARTICIPAÇÃO ECONÔMICA
+          <br>4 - AUTONOMIA E INDEPENDÊNCIA
+          <br>5 - EDUCAÇÃO, FORMAÇÃO E INFORMAÇÃO
+          <br>6 - INTERCOOPERAÇÃO
+          <br>7 - INTERESSE PELA COMUNIDADE
+          <br><br>Uma cooperativa é uma sociedade cujo capital é formado pelos associados e tem a finalidade de somar esforços para atingir objetivos comuns que beneficiem a todos.&nbsp;</p>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          
+          <section class="content16 section article cid-qRA1w2vc2t" id="content16-h">
+              
+               
+          
+              <div class="container">
+                  <div class="text align-center fonts-style white bold display-2"><em>NÓS ACREDITAMOS QUE JUNTOS SOMOS MAIS FORTES.</em><br></div>
+              </div>
+          </section>
+          
+          <section class="section content5 cid-qRA0Xduin5" id="content5-f">
+          
+              
+          
+              <div class="container">
+                  <div class="section-btn align-center"><a class="btn btn-primary display-4" href="https://form.jotformz.com/dgsmonteiro/form_cliente">QUERO CONTRATAR UM SERVIÇO</a>
+                      <a class="btn btn-black-outline display-4" href="https://form.jotformz.com/dgsmonteiro/form_frellancer" target="_blank">QUERO TRABALHAR COMO FREELANCER</a></div>
+              </div>
+          </section>
+          </div>
+
+      
+          
+
+
+          <div class="container">
+              <div class="col-sm-12 align-center">
+                  <p class="display-7">
+                      © Copyright 2018 TATIANE RIBEIRO - All Rights Reserved
+                  </p>
+              </div>
+          </div>
+
+
+          <app-footer>
+              <!-- <form [formGroup]="formMessage" autocomplete="off">
+    <div class="caixa-form-input">
+      <input #caixaTexto matInput aria-labelledby="" type="text" id="textBox"
+        name="textBox" class="mat-elevation-z2" (keyup.enter)="sendMessage()"
+        [class.texto-invalido]="!validInput()" formControlName="textBox"
+        [placeholder]="placeholder">
+      <button mat-icon-button id="sendBtn" type="button" aria-label="botão de enviar"
+        [disabled]="!validInput()" [color]="'primary'" (click)="sendMessage()"
+        [class.d-none]="waitingResponse">
+        <mat-icon aria-label="Icone botão enviar">send</mat-icon>
+      </button>
+      <span [class.d-none]="!waitingResponse" id="loading-spinner">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </span>
+    </div>
+  </form> -->
+          </app-footer>
+      </div>

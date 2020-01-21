@@ -1,0 +1,21 @@
+@import '../../node_modules/@angular/material/theming';
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$config: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(18px, 28px, 700),
+  $body-1: mat-typography-level(12px, 18px, 500)
+);
+
+.app {
+    font-size: mat-font-size($config, headline); 
+}
+@media screen and (max-width: 500px) {
+    .app {
+        font-size: mat-font-size($config, body-1);
+        h1 {font-size: 25px !important}
+        h2 {font-size: 20px !important}
+        h3 {font-size: 15px !important}
+    }
+}

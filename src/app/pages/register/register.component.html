@@ -1,0 +1,53 @@
+<app-header title="Tatiane Ribeiro"></app-header>
+
+<div class="container mt-5 d-flex justify-content-center">
+  
+    
+    <div class="login">   
+      <h1 class="text-center">Seja Bem-vindo!</h1>
+    
+      <form [formGroup]="formRegister" (submit)="register()">
+        <mat-form-field class="d-inline">
+          <input matInput placeholder="Nome" formControlName="name">
+          <mat-error *ngIf="formRegister.controls.name.status === 'INVALID'">
+              Nome é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="d-inline">
+          <input matInput placeholder="CPF" formControlName="cpf">
+          <mat-error *ngIf="formRegister.controls.cpf.status === 'INVALID'">
+              Nome é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="d-inline">
+          <input matInput placeholder="E-mail" formControlName="email">
+          <mat-error *ngIf="formRegister.controls.email.status === 'INVALID'">
+              E-mail é <strong>obrigatório</strong>
+          </mat-error>
+          <mat-error *ngIf="formRegister.controls.email.invalid && formRegister.controls.email.status === 'VALID'">
+            Por favor digite um e-mail válido
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="d-inline">
+          <input matInput placeholder="Senha" formControlName="password" type="password">
+
+          <mat-error *ngIf="formRegister.controls.password.status === 'INVALID'">
+            Senha é <strong>obrigatória</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="d-inline">
+          <input matInput placeholder="Confirmar Senha" formControlName="passwordRewrite" type="password">
+          <mat-error *ngIf="formRegister.controls.passwordRewrite.status === 'INVALID'">
+            Senha é <strong>obrigatória</strong>
+          </mat-error>
+          <mat-error *ngIf="formRegister.controls.passwordRewrite.value !== formRegister.controls.password.value">
+            As senhas devem ser <strong>iguais</strong>
+          </mat-error>
+        </mat-form-field>
+      
+      
+      <button mat-raised-button	class="btn btn-block">Cadastrar</button>
+      
+      </form>
+
+    </div>

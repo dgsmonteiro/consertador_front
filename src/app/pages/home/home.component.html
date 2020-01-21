@@ -1,0 +1,136 @@
+<app-menu>
+    <div class="main background">
+        <div *ngIf="user.isAutenticate()">
+                <div class="jumbotron container banner mt-5">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12 ol-md-6">
+                        <h3 class="text-center mb-3">Seja Bem Vindo</h3>
+                        <p class="text-left display-7">
+                          Esse é o nosso espaço, aqui você poderá fazer o Agendamento das suas consultas.<br></p>
+                        <div class="align-right mb-5 mt-1"><button mat-raised-button color="primary"
+                            [routerLink]="['/agendamento']">Agende uma Consulta</button></div>
+                  
+                  
+                      </div>
+                    </div>
+                  
+                  </div>
+                    
+                    <div class="container">
+                            <h3 class="text-center mb-3" *ngIf="user.isNutri()">Agendas abertas</h3>
+                            <h3 class="text-center mb-3" *ngIf="user.isPaciente()">Meus Agendamentos</h3>
+
+                            <table mat-table [dataSource]="dataSource" class="col-12 mt-4 mb-4">
+
+                                    <!-- Checkbox Column -->
+                                    <ng-container matColumnDef="select">
+                                      <th mat-header-cell *matHeaderCellDef >
+                                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                      [checked]="selection.hasValue() && isAllSelected()"
+                                                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                      >
+                                        </mat-checkbox>
+                                      </th>
+                                      <td mat-cell *matCellDef="let row" >
+                                        <mat-checkbox (click)="$event.stopPropagation()"
+                                                      (change)="$event ? selection.toggle(row) : null"
+                                                      [checked]="selection.isSelected(row)"
+                                                      >
+                                        </mat-checkbox>
+                                      </td>
+                                    </ng-container>
+                                  
+                                    <!-- Position Column -->
+                                    <ng-container matColumnDef="inicio" *ngIf="user.isNutri()" >
+                                      <th mat-header-cell *matHeaderCellDef> Data Inicio </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.inicio | date:'dd/MM/yyyy'}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="data" *ngIf="user.isPaciente()">
+                                      <th mat-header-cell *matHeaderCellDef> Data  </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.data | date:'dd/MM/yyyy'}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="hora" *ngIf="user.isPaciente()">
+                                      <th mat-header-cell *matHeaderCellDef> Hora  </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.hora}}:{{element.minutos < 9 ? element.minutos+'0': element.minutos}} </td>
+                                    </ng-container>
+                                  
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="fim" *ngIf="user.isNutri()">
+                                      <th mat-header-cell *matHeaderCellDef> Data Fim </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.fim | date:'dd/MM/yyyy'}} </td>
+                                    </ng-container>
+                                  
+                                    <!-- Weight Column -->
+                                   
+                                    <!-- <ng-container matColumnDef="profissional" *ngIf="user.isPaciente()" class="ocultaNoMovel">
+                                      <th mat-header-cell *matHeaderCellDef> Profissional </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.profissional}} </td>
+                                    </ng-container> -->
+                                  
+                                    <!-- Symbol Column -->
+                                    <!-- <ng-container matColumnDef="valor" *ngIf="user.isNutri()" class="ocultaNoMovel">
+                                      <th mat-header-cell *matHeaderCellDef> Valor </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.valor | currency:'R$'}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="servico" class="ocultaNoMovel" stickyEnd>
+                                      <th mat-header-cell *matHeaderCellDef> Serviço </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.servico}} </td>
+                                    </ng-container> -->
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                        (click)="selection.toggle(row)">
+                                    </tr>
+                                  </table>
+                                  <div class="align-right mb-3 mt-1" *ngIf="user.isAutenticate()"><button mat-raised-button color="primary" (click)="cancelarAgendas()">Cancelar selecionados</button></div>
+                    </div>
+
+                    
+                   
+        </div>
+       
+        </div>
+        <div *ngIf="!user.isAutenticate()">
+            <div class="jumbotron container banner mt-5">
+
+
+                <h3 class="text-center mb-5">Seja Bem Vindo</h3>
+              <div class="row mb-4">
+                  <div class="col-12">
+                      <img src="../../../assets/images/fotoTatiane.jpg" alt="" class="imagem-capa img-thumbnail rounded">
+                      <p class="text-left display-6">
+                        Dra. Tatiane Ribeiro Guimarães Nutricionista - CRN3 58346
+          <br><br>
+                        Apaixonada pela Nutrição.
+                        <br>
+                        <br>- Graduada Bacharel em Nutrição pela Universidade São Judas Tadeu;
+                          <br>- Personal Diet pelo Senac SP;
+                          <br>- Atua na área de nutrição clínica em São Paulo.<br></p>
+                    </div>
+              </div>
+            
+                <div class="align-right mb-3 mt-5"><a mat-raised-button color="primary"  [routerLink]="['/agendamento']">Agende uma Consulta</a></div>
+            </div>
+            
+        </div>
+
+    
+        
+
+
+
+        <app-footer>
+
+<div class="container">
+    <div class="col-sm-12 align-center">
+        <p class="display-7">
+            © Copyright 2018 TATIANE RIBEIRO - All Rights Reserved
+        </p>
+    </div>
+</div>
+
+        </app-footer>
+    </div>
+</app-menu>
